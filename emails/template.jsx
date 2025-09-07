@@ -27,12 +27,12 @@ export default function EmailTemplate({
           <Container style={styles.container}>
             <Heading style={styles.title}>Budget Alert</Heading>
             <Text style={styles.text}>Hello {userName},</Text>
-
+            
             <Text style={styles.text}>
               You&rsquo;ve used {Number(data?.percentageUsed || 0).toFixed(1)}%
               of your monthly budget.
             </Text>
-
+            // ...existing code...
             <Section style={styles.statsContainer}>
               <div style={styles.stat}>
                 <Text style={styles.text}>Budget Amount</Text>
