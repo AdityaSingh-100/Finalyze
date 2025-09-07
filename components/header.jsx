@@ -37,7 +37,7 @@ const Header = async () => {
               <Button className="flex items-center gap-2">
                 <PenBox size={18} />
                 <LayoutDashboard size={18} />
-                <span className="hidden md:inline">Dashboard</span>
+                <span className="hidden md:inline">Add Transaction</span>
               </Button>
             </Link>
           </SignedIn>
