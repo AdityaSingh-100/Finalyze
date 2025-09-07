@@ -99,20 +99,19 @@ function calculateNextRecurringDate(startDate, interval) {
 
   switch (interval) {
     case "DAILY":
-      date.setDate(date.getDate() + 1);
+      date.setDate(date.getDate() + 1); // Fixed: "setDate" not "sendDate"
       break;
-
     case "WEEKLY":
-      date.sendDate(date.getDate() + 7);
+      date.setDate(date.getDate() + 7); // Fixed: "setDate" not "sendDate"
       break;
-
     case "MONTHLY":
-      date.sendDate(date.getMonth() + 1);
+      date.setMonth(date.getMonth() + 1); // Fixed: "setMonth" not "sendDate"
       break;
-
     case "YEARLY":
-      date.setFullYear(date.getFullYear() + 1);
+      date.setFullYear(date.getFullYear() + 1); // Fixed: "setFullYear" not "sendDate"
       break;
+    default:
+      throw new Error(`Invalid recurring interval: ${interval}`);
   }
   return date;
 }
