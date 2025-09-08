@@ -66,7 +66,9 @@ export default function EmailTemplate({
                   ([category, amount]) => (
                     <div key={category} style={styles.row}>
                       <Text style={styles.text}>{category}</Text>
-                      <Text style={styles.text}>${amount}</Text>
+                      <Text style={styles.text}>
+                        ${Number(amount).toFixed(2)}
+                      </Text>
                     </div>
                   )
                 )}
@@ -107,20 +109,27 @@ export default function EmailTemplate({
               You&rsquo;ve used {Number(data?.percentageUsed || 0).toFixed(1)}%
               of your monthly budget.
             </Text>
-            // ...existing code...
             <Section style={styles.statsContainer}>
               <div style={styles.stat}>
                 <Text style={styles.text}>Budget Amount : </Text>
-                <Text style={styles.heading}>${data?.budgetAmount || 0}</Text>
+                <Text style={styles.heading}>
+                  ${Number(data?.budgetAmount || 0).toFixed(2)}
+                </Text>
               </div>
               <div style={styles.stat}>
                 <Text style={styles.text}>Spent So Far : </Text>
-                <Text style={styles.heading}>${data?.totalExpenses || 0}</Text>
+                <Text style={styles.heading}>
+                  ${Number(data?.totalExpenses || 0).toFixed(2)}
+                </Text>
               </div>
               <div style={styles.stat}>
                 <Text style={styles.text}>Remaining : </Text>
                 <Text style={styles.heading}>
-                  ${(data?.budgetAmount || 0) - (data?.totalExpenses || 0)}
+                  $
+                  {(
+                    Number(data?.budgetAmount || 0) -
+                    Number(data?.totalExpenses || 0)
+                  ).toFixed(2)}
                 </Text>
               </div>
             </Section>
