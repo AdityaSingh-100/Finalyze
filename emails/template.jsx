@@ -33,17 +33,25 @@ export default function EmailTemplate({
             {/* Main Stats */}
             <Section style={styles.statsContainer}>
               <div style={styles.stat}>
-                <Text style={styles.text}>Total Income</Text>
-                <Text style={styles.heading}>${data?.stats.totalIncome}</Text>
-              </div>
-              <div style={styles.stat}>
-                <Text style={styles.text}>Total Expenses</Text>
-                <Text style={styles.heading}>${data?.stats.totalExpenses}</Text>
-              </div>
-              <div style={styles.stat}>
-                <Text style={styles.text}>Net</Text>
+                <Text style={styles.text}>Total Income : </Text>
                 <Text style={styles.heading}>
-                  ${data?.stats.totalIncome - data?.stats.totalExpenses}
+                  ${(data?.stats.totalIncome || 0).toFixed(2)}
+                </Text>
+              </div>
+              <div style={styles.stat}>
+                <Text style={styles.text}>Total Expenses : </Text>
+                <Text style={styles.heading}>
+                  ${(data?.stats.totalExpenses || 0).toFixed(2)}
+                </Text>
+              </div>
+              <div style={styles.stat}>
+                <Text style={styles.text}>Net : </Text>
+                <Text style={styles.heading}>
+                  $
+                  {(
+                    (data?.stats.totalIncome || 0) -
+                    (data?.stats.totalExpenses || 0)
+                  ).toFixed(2)}
                 </Text>
               </div>
             </Section>
@@ -51,7 +59,9 @@ export default function EmailTemplate({
             {/* Category Breakdown */}
             {data?.stats?.byCategory && (
               <Section style={styles.section}>
-                <Heading style={styles.heading}>Expenses by Category</Heading>
+                <Heading style={styles.heading}>
+                  Expenses by Category :{" "}
+                </Heading>
                 {Object.entries(data?.stats.byCategory).map(
                   ([category, amount]) => (
                     <div key={category} style={styles.row}>
@@ -66,7 +76,7 @@ export default function EmailTemplate({
             {/* AI Insights */}
             {data?.insights && (
               <Section style={styles.section}>
-                <Heading style={styles.heading}>Welth Insights</Heading>
+                <Heading style={styles.heading}>Welth Insights : </Heading>
                 {data.insights.map((insight, index) => (
                   <Text key={index} style={styles.text}>
                     • {insight}
@@ -91,7 +101,7 @@ export default function EmailTemplate({
         <Preview>Budget Alert</Preview>
         <Body style={styles.body}>
           <Container style={styles.container}>
-            <Heading style={styles.title}>Budget Alert</Heading>
+            <Heading style={styles.title}>Budget Alert : </Heading>
             <Text style={styles.text}>Hello {userName},</Text>
             <Text style={styles.text}>
               You&rsquo;ve used {Number(data?.percentageUsed || 0).toFixed(1)}%
@@ -100,15 +110,15 @@ export default function EmailTemplate({
             // ...existing code...
             <Section style={styles.statsContainer}>
               <div style={styles.stat}>
-                <Text style={styles.text}>Budget Amount</Text>
+                <Text style={styles.text}>Budget Amount : </Text>
                 <Text style={styles.heading}>${data?.budgetAmount || 0}</Text>
               </div>
               <div style={styles.stat}>
-                <Text style={styles.text}>Spent So Far</Text>
+                <Text style={styles.text}>Spent So Far : </Text>
                 <Text style={styles.heading}>${data?.totalExpenses || 0}</Text>
               </div>
               <div style={styles.stat}>
-                <Text style={styles.text}>Remaining</Text>
+                <Text style={styles.text}>Remaining : </Text>
                 <Text style={styles.heading}>
                   ${(data?.budgetAmount || 0) - (data?.totalExpenses || 0)}
                 </Text>
