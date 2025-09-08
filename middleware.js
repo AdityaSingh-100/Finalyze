@@ -1,6 +1,6 @@
 import { createMiddleware } from "@arcjet/next";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-import arcjet, { detectBot } from "arcjet";
+import arcjet, { detectBot, shield } from "arcjet";
 
 const isProtectedRoute = createRouteMatcher([
   "/dashboard(.*)",
@@ -8,8 +8,18 @@ const isProtectedRoute = createRouteMatcher([
   "/transaction(.*)",
 ]);
 
+// Create a proper logger object for Arcjet
+const logger = {
+  debug: console.debug,
+  info: console.info,
+  warn: console.warn,
+  error: console.error,
+};
+
 const aj = arcjet({
   key: process.env.ARCJET_KEY,
+  log: logger, // Use the proper logger object
+  client: "arcjet-js", // Add the required client configuration
   rules: [
     shield({
       mode: "LIVE",
