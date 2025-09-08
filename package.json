@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "email": "email dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@arcjet/next": "^1.0.0-beta.11",
@@ -45,6 +46,9 @@
     "tailwind-merge": "^3.3.1",
     "vaul": "^1.1.2",
     "zod": "^4.1.4"
+  },
+  "overrides": {
+    "serialize-error-cjs": "0.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
