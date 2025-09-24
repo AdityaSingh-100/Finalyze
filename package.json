@@ -47,9 +47,6 @@
     "vaul": "^1.1.2",
     "zod": "^4.1.4"
   },
-  "overrides": {
-    "serialize-error-cjs": "0.2.0"
-  },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@react-email/preview-server": "^4.2.8",
